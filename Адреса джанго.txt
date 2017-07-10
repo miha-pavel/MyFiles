@@ -1,0 +1,4 @@
+http://djbook.ru/rel1.8/						Инструкции по джанго
+https://docs.djangoproject.com/en/1.8/			Инструкции по джанго в оригинале
+
+https://github.com/ibrikin/django-rest-framework-rusdoc/tree/master/docs	django-rest-framework русифицированный
