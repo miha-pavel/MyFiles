@@ -1,0 +1,46 @@
+----------------------------------------------------------------------------------
+Test
+Domain Information
+
+State
+Active
+
+IP Address
+184.173.153.202
+
+SMTP Hostname
+smtp.mailgun.org
+
+Default SMTP Login
+postmaster@sandboxee39ebdb3ead4516af2d850f2633311b.mailgun.org
+
+Default Password
+32df6acd6927c4b832ab6c0ce2be25a8Manage SMTP credentials
+
+API Base URL
+https://api.mailgun.net/v3/sandboxee39ebdb3ead4516af2d850f2633311b.mailgun.org
+
+API Key
+key-ad6697aadd268fcd568e331377517127
+---------------------------------------------
+Domain Information
+State
+Unverified
+
+IP Address
+184.173.153.202
+
+SMTP Hostname
+smtp.mailgun.org
+
+Default SMTP Login
+postmaster@pahamihali4.mydomain.com
+
+Default Password
+db18e1d5859ed1e87defccb86423a574Manage SMTP credentials
+
+API Base URL
+https://api.mailgun.net/v3/pahamihali4.mydomain.com
+
+API Key
+key-ad6697aadd268fcd568e331377517127

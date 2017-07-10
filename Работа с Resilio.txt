@@ -1,0 +1,41 @@
+https://www.resilio.com/platforms/desktop/
+
+Линк на страницу программы:
+https://www.resilio.com/individuals/
+
+Далее инструкция по установке:
+
+1) Добавляем репозиторий
+	Для этого создаем файл
+
+		sudo xed /etc/apt/sources.list.d/resilio-sync.list
+
+	и вписываем туда строку
+
+		deb http://linux-packages.resilio.com/res... resilio-sync non-free
+
+	сохраняем файл
+
+2) Добавляем ключ для пакета
+
+	wget -qO - https://linux-packages.resilio.com/re... | sudo apt-key add -
+
+3) Устанавливаем пакет
+
+	sudo apt-get update
+	sudo apt-get install resilio-sync
+
+4) Запускаем Sync от текущего пользователя
+	Для этого редактируем файл
+
+		sudo xed /usr/lib/systemd/user/resilio-sync.service
+
+	и меняем строку WantedBy=multi-user.target
+	на строку WantedBy=default.target
+	сохраняем файл
+
+5) Запускаем Sync
+
+	systemctl --user enable resilio-sync
+
+	systemctl --user start resilio-sync

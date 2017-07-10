@@ -1,0 +1,82 @@
+	ПРОБЛЕМА С УСТАНОВКОЙ NODEJS
+	----------------------------
+(https://askubuntu.com/questions/755627/used-curl-to-get-nodejs-how-to-remove-the-files-have-not-installed-nodejs-yet)
+----------------------------------------------------------------------------------------------------------------------
+I used: curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash - because
+I wanted to install NodeJS, but after executing the command - I realised I used the wrong command. 
+need NodeJS version 5, not 4.
+I have not used apt-get install nodejs yet. How can I remove the files that the first command downloaded,
+so that I can execute a different curl command and then install NodeJS using apt-get install nodejs ?
+I'm rather new to Ubuntu.
+-----------------------------------------------------------------------------------------------------------
+	РЕШЕНИЕ
+	-------
+I would remove nodesource.list from apt/sources.list.d/
+	`sudo rm /etc/sources.list.d/nodesource.list`(МОЕ `sudo rm /etc/apt/sources.list.d/nodesource.list`)
+Then apt-get update
+	`sudo apt-get update`
+=======================================================================================================================
+	НЕ МОГУ УТСАНОВИТЬ PILLOW
+	------------------------
+(http://stackoverflow.com/questions/24646305/error-for-pip-install-pillow-on-ubuntu-virtualenv)
+-----------------------------------------------------------------------------------------------------------------------
+ERRORS:
+products.ProductImage.image: (fields.E210) Cannot use ImageField because Pillow is not installed.
+        HINT: Get Pillow at https://pypi.python.org/pypi/Pillow or run command "pip install Pillow".
+ 
+System check identified 1 issue (0 silenced).
+(venv) pasha@PahaMihaXU:~/PROJECTS_NN/shop$ pip install Pillow
+pip install Pillow: команда не найдена
+--------------------------------------
+-------------------------------------------------------------------------------------------------------------
+	РЕШЕНИЕ
+	-------
+`sudo apt-get install python3.5-dev`
+`sudo apt-get install libjpeg8-dev`
+`sudo ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib`
+`pip3 install Pillow`
+=======================================================================================================================
+	ПРИ ПЕРВОМ ЗАПУСКЕ СУЩЕСТВУЮЩЕГО ПРОЭКТА, ВЫДАЕТ ОШИБКУ
+	-------------------------------------------------------
+(venv) pasha@PahaMihaXU:~/PROJECTS/alur$ python3 manage.py runserver
+CommandError: You must set settings.ALLOWED_HOSTS if DEBUG is False.
+-----------------------------------------------------------------------------------------------------------------------
+	РЕШЕНИЕ
+	-------
+`python manage.py runserver`	- используеться python2
+======================================================================================================================
+	ПРОБЛЕМЫ С НАСТРОЙКОЙ БАЗЫМ ДАННЫХ
+	----------------------------------
+settings.DATABASES is improperly configured. Please supply the NAME value.
+----------------------------------------------------------------------------------------------------------------------
+(http://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge#18664239)
+The problem is still your pg_hba.conf file (/etc/postgresql/9.1/main/pg_hba.conf). This line:
+
+local   all             postgres                                peer
+Should be
+
+local   all             postgres                                md5
+After altering this file, don't forget to restart your PostgreSQL server.
+If you're on Linux, that would be
+	`sudo service postgresql restart`.
+======================================================================================================================
+	После ПУШ выдало ошибку
+	-----------------------
+(venv) pavel@DTAPavelU:~/PROJECTS/alur$ git push origin Collapse_Category
+error: src refspec Collapse_Category matches more than one.
+error: не удалось отправить некоторые ссылки в «https://miha_pavel@bitbucket.org/Anton2013/alur.git»
+-------------------------------------------------------------------------------------------------------------
+	РЕШЕНИЕ
+	------
+(venv) pavel@DTAPavelU:~/PROJECTS/alur$ git status
+На ветке Collapse_Category
+нечего коммитить, нет изменений в рабочем каталоге
+
+(venv) pavel@DTAPavelU:~/PROJECTS/alur$ git tag
+Collapse_Category
+
+(venv) pavel@DTAPavelU:~/PROJECTS/alur$ git tag -d Collapse_Category		удаление тэга к коммиту Collapse_Category
+Метка «Collapse_Category» удалена (была e91699c)
+
+(venv) pavel@DTAPavelU:~/PROJECTS/alur$ git push origin Collapse_Category
+Password for 'https://miha_pavel@bitbucket.org':

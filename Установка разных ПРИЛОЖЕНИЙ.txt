@@ -1,0 +1,56 @@
+	УСТАНОВКА POSTGRESQL
+	--------------------
+Eсли вы хотите получить самую новую версию, то придется добавить в систему PPA.
+	`sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'`
+	`wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -`
+Затем обновите списки пакетов, чтобы получить самую новую доступную версию:
+	`sudo apt-get update`
+Установка Postgresl Ubuntu из PPA или официальных репозиториев выглядит одинаково:
+	`sudo apt-get install postgresql postgresql-contrib`
+Переключите терминал на пользователя postgres:
+	`sudo su - postgres`
+Войти в консоль управления:
+	`psql`
+--------------------------------------------------------------------------------------------------------------------------------------
+	УДАЛИТЬ
+	sudo apt-get --purge remove pgadmin3
+	sudo apt-get --purge remove postgresql\*
+
+	sudo rm -r /etc/postgresql/
+	sudo rm -r /etc/postgresql-common/
+	sudo rm -r /var/lib/postgresql/
+	sudo userdel -r postgres
+	sudo groupdel postgres
+=======================================================================================================================================
+	УСТАНОВКА SASS
+	--------------
+	`sudo apt-get update`
+В первую очередь необходимо установить Ruby.
+	`sudo apt-get install ruby-full`
+После установки нам становится доступна команда gem. Теперь с ее помощью ставим все необходимое.
+Теперь преступим к установке compass.
+	`sudo gem install compass`
+Установка непосредственно самого sass.
+	`sudo gem install sass`
+Установка Bootstrap SASS.
+	`sudo gem install bootstrap-sass`
+Проверяем версию
+	`sass -v`
+=======================================================================================================================================
+	УСТАНОВКА NODE.JS и NPM (при установке возникла ошибка ОСТОРОЖНО)
+	-----------------------
+Установка Node js Ubuntu, Используя NVM:
+	`sudo apt-get update`
+	`sudo apt-get install build-essential libssl-dev`
+	`curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh -o install_nvm.sh`
+	`nano install_nvm.sh`
+нажимаю ctrl+X
+	`bash install_nvm.sh`
+нажимаю ctrl+X
+	`source ~/.profile`
+	`nvm ls-remote`
+Выдаст список версий, выбираем нужную на версию
+	`nvm install 7.8.0`
+	`nvm use 7.8.0`
+Проверяем версию
+	`node -v`
