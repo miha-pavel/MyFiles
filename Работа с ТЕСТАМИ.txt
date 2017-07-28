@@ -64,5 +64,8 @@ http://great-world.ru/kody-otvetov-servera-i-oshibki-http-200-301-404-302-500-50
 302 - перенаправление на другую страницу.
 		В случае успешной записи открываеться другая страница
 		 if newuser:
-            auth.login(request, newuser)
-        	return redirect(reverse('login'))
+            		auth.login(request, newuser)
+        		return redirect(reverse('login'))
+				
+
+

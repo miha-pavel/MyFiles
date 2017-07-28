@@ -1,0 +1,28 @@
+==============================================================================================================
+==============================================================================================================
+			тест для проверки волидации формы стр 21-22
+			-------------------------------------------
+
+def test_validation_review_ok(self):
+	"""The test verifies the form's validation, form is valid
+
+	"""
+	before = Review.objects.count()
+	shoes = Shoes.objects.latest('id')
+	form_data = {'g-recaptcha-response': 'PASSED',
+				 'rating': "4",
+				 'text': "Text",
+				 'name': 'Name',
+				 }
+	url = reverse('post_review', args=[shoes.translated_url, shoes.get_type()])
+	response = self.client.post(url, form_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+	data = json.loads(response.content)
+	self.assertEqual(data['status'], 'ok')
+	self.assertEqual(before+1, Review.objects.count())
+	form = ReviewForm(data=form_data)
+	self.assertTrue(form.is_valid())
+	
+==============================================================================================================
+==============================================================================================================
+			... стр ...
+			-------------------------------------------
