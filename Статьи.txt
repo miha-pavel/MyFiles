@@ -105,3 +105,8 @@ http://python.su/forum/topic/3517/?page=1#post-22687
 https://djangosimple.blogspot.com/2013/06/django-staticmethod-classmethod.html
 http://qaru.site/questions/10955/meaning-of-classmethod-and-staticmethod-for-beginner
 https://python-scripts.com/decorators
+=================================================================================================================================
+=================================================================================================================================
+	GIT
+	---
+https://habrahabr.ru/post/273897/

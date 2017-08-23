@@ -90,6 +90,7 @@ sudo apt-get install idle3		- устанавливаем стандартный 
 
 -Выполним миграцию makemigrations приложения "polls"
 	python manage.py makemigrations polls
+	python manage.py makemigrations polls -n "add_discount_model"	исключаем автоимя, и вставляем свое
 	python manage.py migrate
 Выполняя makemigrations, вы говорите Django, что внесли некоторые изменения в ваши модели
 (в нашем случае мы создали несколько новых) и хотели бы сохранить их в миграции.
