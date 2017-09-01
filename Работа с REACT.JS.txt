@@ -1,0 +1,2 @@
+Разыскивается туториал для Django rest framework с react.js?
+https://toster.ru/q/434941
