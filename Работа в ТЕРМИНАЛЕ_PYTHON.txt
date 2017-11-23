@@ -4,7 +4,8 @@
 ============================================================================================
 										Адреса
 										------
-...
+Тонкости использования языка Python: Часть 3. Функциональное программирование
+https://www.ibm.com/developerworks/ru/library/l-python_details_03/index.html
 ============================================================================================
 python3 --version				- запрашиваем рабочую версию питона
 sudo apt-get install idle3		- устанавливаем стандартный редактор Питона 3
@@ -72,11 +73,11 @@ sudo apt-get install idle3		- устанавливаем стандартный 
 
 --------------------------------------------------------------------------------------------
 Добовляем в проэкт ПРИЛОЖЕНИЕ с именем <polls>
-	python manage.py startapp <polls>
+	./manage.py startapp <polls>
 	
 --------------------------------------------------------------------------------------------
 Создание суперпользователя
-	python3 manage.py createsuperuser
+	./manage.py createsuperuser
 --------------------------------------------------------------------------------------------
 Устанавливаем Linter Flake8
 	pip install flake8
@@ -90,7 +91,7 @@ sudo apt-get install idle3		- устанавливаем стандартный 
 	pip3 freeze
 ------------------------------------------------------------------
 Отправляем список приложений pip в файл requirements.txt
-	pip3 freeze > requirements.txt
+	 
 ------------------------------------------------------------------
 Установка указанных зависимостей осуществляется из консоли, с помощью следующей команды
 	pip install -r requirements.txt
@@ -100,9 +101,9 @@ sudo apt-get install idle3		- устанавливаем стандартный 
 							*********************
 
 -Выполним миграцию makemigrations приложения "polls"
-	python manage.py makemigrations polls
-	python manage.py makemigrations polls -n "add_discount_model"	исключаем автоимя, и вставляем свое
-	python manage.py migrate
+	./manage.py makemigrations polls
+	./manage.py makemigrations polls -n "add_discount_model"	исключаем автоимя, и вставляем свое
+	./manage.py migrate
 Выполняя makemigrations, вы говорите Django, что внесли некоторые изменения в ваши модели
 (в нашем случае мы создали несколько новых) и хотели бы сохранить их в миграции.
 --------------------------------------------------------------------------------------------
@@ -111,12 +112,14 @@ sudo apt-get install idle3		- устанавливаем стандартный 
 -удоляем старую базу данных
 	rm -f tmp.db db.sqlite3
 -выполняем откат до первоначальной миграции, это делаеться для того чтобы удолить все записи о миграциях в базе данных
-	python manage.py migrate name_app zero
+	./manage.py migrate name_app zero
 -удоляем старые миграции
 	rm -r name_app/migrations
 -выполняем новые миграции
-	python manage.py makemigrations name_app
-	python manage.py migrate
+	./manage.py makemigrations name_app
+-выполняем новые миграции одного имени "имя_миграции" сразу для всех апликух
+	./manage.py makemigrations --name имя_миграции"
+	./manage.py migrate
 --------------------------------------------------------------------------------------------
 		Откат до нужного номера миграции
 		--------------------------------
@@ -169,4 +172,4 @@ http://night-fairy-tales.com/2009/05/captcha-django.html
 							*Вызов консоли*
 							***************	
 	
-./manage.py shell
+	./manage.py shell
