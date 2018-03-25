@@ -1,0 +1,231 @@
+In [106]: UserProfile.objects.filter(user=pavel)
+Out[106]: <QuerySet [<UserProfile: pavel>]>
+
+In [107]: UserProfile.objects.filter(id=46116)
+Out[107]: <QuerySet []>
+
+In [108]: UserProfile.objects.filter(user__id=46116)
+Out[108]: <QuerySet [<UserProfile: pavel>]>
+
+In [109]: pavel.delete()
+Out[109]:
+(2,
+ {u'accounts.EmailConfirmation': 0,
+  u'accounts.UserDeclinedChooseCity': 0,
+  u'accounts.UserLiqpayToken': 0,
+  u'accounts.UserProfile': 1,
+  u'accounts.UserWayForPayToken': 0,
+  u'admin.LogEntry': 0,
+  u'auth.User': 1,
+  u'auth.User_groups': 0,
+  u'auth.User_user_permissions': 0,
+  u'big_blog.BigBlogArticleContributor': 0,
+  u'big_blog.TeamBlogArticle': 0,
+  u'counters.ObjectLikeRecord_users': 0,
+  u'counters.ViewRecord': 0,
+  u'dashboard.DashboardPreferences': 0,
+  u'menu.Bookmark': 0,
+  u'profiles.CommunityEvent': 0,
+  u'projects.ProjectDraft': 0,
+  u'registration.RegistrationProfile': 0,
+  u'social_django.UserSocialAuth': 0})
+
+In [110]: pavel
+Out[110]: <User: pavel Creator <pavel@email.com>>
+
+==========================================
+./manage.py shell_plus
+
+
+In [1]: user = User.objects.last()
+
+In [2]: user
+Out[2]: <User:  <pavel_user@gmail.com>>
+
+In [3]: user.profile
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-3-ca179ca5cd11> in <module>()
+----> 1 user.profile
+
+AttributeError: 'User' object has no attribute 'profile'
+
+In [4]: user.userprofile
+Out[4]: <UserProfile: pavel_user>
+
+In [5]: user.userprofile.save()
+
+In [6]: profile = user.userprofile
+
+In [7]: profile.role = 1
+
+In [8]: profile.save()
+
+In [9]: user
+Out[9]: <User:  <pavel_user@gmail.com>>
+
+In [10]: profile
+Out[10]: <UserProfile: pavel_user>
+
+In [11]: user.email
+Out[11]: u'pavel_user@gmail.com'
+
+In [12]: user.email = u'paveluser@gmail.com'
+
+In [13]: user.save()
+
+In [14]: user.is_active
+Out[14]: True
+
+In [15]: user, profile
+Out[15]: (<User:  <paveluser@gmail.com>>, <UserProfile: pavel_user>)
+
+In [16]: import datetime
+
+In [17]: from decimal import Decimal
+
+In [18]: for i in range(0, 3):
+    ...:     Workshop.objects.create(creator=profile, title=u"Title %s" % i, description="111", start_datetime=datetime.datetime.now() + datetime.timedelta(days=5), price=Decimal("1000"),
+    ...: status=Workshop.PUBLISHED)
+    ...:
+
+In [19]: profile.workshop_set.all()
+Out[19]: <QuerySet []>
+
+In [20]: Workshop.objects.filter(creator=profile)
+Out[20]: <QuerySet [<Workshop: Title 0>, <Workshop: Title 1>, <Workshop: Title 2>]>
+
+In [21]: profile.workshop_set.all()
+Out[21]: <QuerySet []>
+
+In [22]: profile.refresh_from_db()
+
+In [23]: profile.workshop_set.all()
+Out[23]: <QuerySet []>
+
+In [24]: profile.created_workshops.all()
+Out[24]: <QuerySet [<Workshop: Title 0>, <Workshop: Title 1>, <Workshop: Title 2>]>
+
+In [25]: user
+Out[25]: <User:  <paveluser@gmail.com>>
+
+In [26]: user.set_password('123')
+
+In [27]: user.save()
+
+In [28]: from accounts.services.user_service import UserService
+
+In [29]: from accounts.services.user_service import UserService
+
+In [30]: profile.photo = UserService().create_photo(profile.user)
+
+In [31]: profile.save()
+
+In [32]: profile.created_workshops.all()
+Out[32]: <QuerySet [<Workshop: Title 0>, <Workshop: Title 1>, <Workshop: Title 2>]>
+
+In [33]: profile.created_workshops.all()[0]
+Out[33]: <Workshop: Title 0>
+
+In [34]: ws = profile.created_workshops.all()[0]
+
+In [35]: ws
+Out[35]: <Workshop: Title 0>
+
+In [36]: ws.status = Workshop.CREATED
+
+In [37]: ws.save()
+
+In [38]:
+file.log
+In [21]: profile.workshop_set.all()
+Out[21]: <QuerySet []>
+
+In [22]: profile.refresh_from_db()
+
+In [23]: profile.workshop_set.all()
+Out[23]: <QuerySet []>
+
+In [24]: profile.created_workshops.all()
+Out[24]: <QuerySet [<Workshop: Title 0>, <Workshop: Title 1>, <Workshop: Title 2>]>
+
+In [25]: user
+Out[25]: <User:  <paveluser@gmail.com>>
+
+In [26]: user.set_password('123')
+
+In [27]: user.save()
+
+In [28]: from accounts.services.user_service import UserService
+
+In [29]: from accounts.services.user_service import UserService
+
+In [30]: profile.photo = UserService().create_photo(profile.user)
+
+In [31]: profile.save()
+
+In [32]: profile.created_workshops.all()
+Out[32]: <QuerySet [<Workshop: Title 0>, <Workshop: Title 1>, <Workshop: Title 2>]>
+
+In [33]: profile.created_workshops.all()[0]
+Out[33]: <Workshop: Title 0>
+
+In [34]: ws = profile.created_workshops.all()[0]
+
+In [35]: ws
+Out[35]: <Workshop: Title 0>
+
+In [36]: ws.status = Workshop.CREATED
+
+In [37]: ws.save()
+
+In [38]: profile.username
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-38-20cf5dfa5e38> in <module>()
+----> 1 profile.username
+
+AttributeError: 'UserProfile' object has no attribute 'username'
+
+In [39]: profile.user
+Out[39]: <User:  <paveluser@gmail.com>>
+
+In [40]: profile.user.username
+Out[40]: u'pavel_user'
+
+In [41]: profile.user.password
+Out[41]: u'pbkdf2_sha256$36000$1FMRByCjrxYK$UyUpy6UR9FVqZmPEURiRbR6vgGeM56mDcpTffdtnvjM='
+
+In [42]: user.is_superuser=True
+
+In [43]: user.is_stuff=True
+
+In [44]: user.save()
+
+In [45]: user.username
+Out[45]: u'pavel_user'
+
+In [46]: user.password
+Out[46]: u'pbkdf2_sha256$36000$1FMRByCjrxYK$UyUpy6UR9FVqZmPEURiRbR6vgGeM56mDcpTffdtnvjM='
+
+In [47]: user.email
+Out[47]: u'paveluser@gmail.com'
+
+In [48]: user.set_password('123')
+
+In [49]: user.save()
+
+In [50]: user.username
+Out[50]: u'pavel_user'
+
+In [51]: user.username = 'paveluser'
+
+In [52]: user.save()
+
+In [53]: user.refresh_from_db()
+
+In [54]: user.is_staff = True
+
+In [55]: user.save()
+
+In [56]:

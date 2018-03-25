@@ -1,0 +1,85 @@
+# ONE2ONE
+class User():
+    pass
+
+
+class UserProfile():
+    user = models.OneToOneField(User)
+    city = models.CharField()
+
+
+a = User()
+profile1 = UserProfile(user=a)
+profile1.save()
+a.userprofile.city
+
+profile2 = UserProfile(user=a)
+profile2.save()
+# DB INTEGRETY ERROR
+
+
+# FK
+class User():
+    pass
+
+
+class UserProfile():
+    user = models.ForeignKey(User)
+    city = models.CharField()
+
+
+a = User()
+profile1 = UserProfile(user=a, city='City1')
+profile1.save()
+
+profile2 = UserProfile(user=a, city='City2')
+profile2.save()
+
+a.userprofile.city
+# attributeerror: User instance doesn't have userprofile attribute
+
+a.userprofile_set == UserProfile.objects.filter(user=a)
+a.userprofile_set.all()[0].city
+a.userprofile_set.all()[1].city
+
+a.userprofile_set.values_list('city', flat=True)
+['City1', 'City2']
+
+profile1.user.name
+'UserA'
+
+profile1.user.name
+'UserA'
+
+
+# M2M
+class User():
+    pass
+
+
+class CityArchive():
+    user = models.ManyToManyField(User)
+    city = models.CharField()
+
+
+a = User()
+b = User()
+
+archive = CityArchive(city="City1")
+archive2 = CityArchive(city="City2")
+
+archive.user.add(*[a, b])
+
+archive2.user.add(b)
+
+a.cityarchive_set.all() == CityArchive.objects.filter(user=a)
+[CityArchive(city="City1")]
+
+a.cityarchive_set.values_list('city', flat=True)
+['City1']
+
+b.cityarchive_set.values_list('city', flat=True)
+['City1', 'CIty2']
+
+archive.user.values_list('name')
+['UserA', 'UserB']

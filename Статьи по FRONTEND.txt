@@ -16,3 +16,12 @@ https://medium.com/web-standards/critical-and-progressive-css-d6611f034d7d
 CSS CПРАЙТЫ. Создание и использование при верстке!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ФОТОШОП
 https://www.youtube.com/watch?v=DfrV4P0ozWM
+---------------------------------------------------------
+Простой туториал React Router v4
+https://habrahabr.ru/post/329996/
+---------------------------------------------------------
+Изменение размеров background-size!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+https://webref.ru/css/background-size
+---------------------------------------------------------
+Как работает CSS Flexbox: наглядное введение в систему компоновки элементов на веб-странице !!!!!!!!!!
+https://tproger.ru/translations/how-css-flexbox-works/
